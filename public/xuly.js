@@ -1,4 +1,6 @@
-var socket = io('http://localhost:3000');
+//var socket = io('http://localhost:3000');
+var socket = io('https://t3hq.herokuapp.com/');
+
 
 socket.on('server-send-fail',function(){
     alert('wrong!');
