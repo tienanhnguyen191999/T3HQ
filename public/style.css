@@ -1,0 +1,54 @@
+*{
+    padding: 0;
+    margin:0;
+    box-sizing: border-box;
+}
+#main{
+    width:90%;
+    margin:20px auto;
+    height: 600px;
+    padding: 10px;
+    border: 1px solid green;
+}
+#main h1{
+    text-align: center;
+}
+
+#left{
+    float:left;
+    width:30%;
+    border: 1px solid black;
+    padding: 5px;
+    height: 400px;
+}
+
+#right{
+    padding: 5px;
+    float: right;
+    width: 70%;
+    height:500px;
+    border: 1px solid red;
+    position: relative;
+}
+
+#content{
+    border:1px solid black;
+    height: 90%;
+}
+#groupSubmit{
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+}
+
+input[type=text]{
+    padding: 1% 10%;
+}
+
+.txt{
+    margin-left: 5px;
+}
+
+#name, #btnlogout{
+    display: inline-block;
+}

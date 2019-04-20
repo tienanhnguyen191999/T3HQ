@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+    <script src="jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js" integrity="sha256-uEFhyfv3UgzRTnAZ+SEgvYepKKB0FW6RqZLrqfyUNug=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="socket.io/socket.io.js"></script>
+    <script src='xuly.js'></script>
+    <link rel='stylesheet' type='text/css' href="style.css">
+</head>
+<body>
+    <div id="login">
+        <h3>Khai báo mật danh</h3>
+        <input type="text" id="credential">
+        <input type="button" id="btnCredential" value="send">
+    </div>
+    <div id="main">
+            <h2 id="name"></h2>
+            <input type="button" id="btnlogout" value="Logout">
+        <h1>Mật Nhóm T3HQ</h1>
+        <div id="left">
+            <h3>Danh sách online <span id='total'></span></h3>
+            <div id="list"></div>
+        </div>
+        <div id="right">
+            <div id="content">
+
+            </div>
+            <hr>
+            <div id="groupSubmit">
+                <input type="text" id="message">
+                <input type="button" id="btnMessage" value="send">
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js" integrity="sha256-uEFhyfv3UgzRTnAZ+SEgvYepKKB0FW6RqZLrqfyUNug=" crossorigin="anonymous"></script>
+</html>
