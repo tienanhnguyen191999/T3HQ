@@ -8,10 +8,10 @@ app.set('view engine','ejs');
 app.set('views','./views');
 
 var io = require('socket.io')(server);
-var mang_root = ['tien','trieu','toan','hien','quan']; // Account
-var message = [];
-var mang_now = [];
-
+var mang_root = ['TIEN','TRIEU','TOAN','HIEN','QUAN']; // Account
+var message = [];  
+var mang_now = []; // user now
+var typing = [];
 io.on('connection',function(socket){
     socket.emit('server-send-chat-history',message);
     console.log(socket.id + " online");
@@ -22,11 +22,11 @@ io.on('connection',function(socket){
     });
 
     socket.on('client-send-credential',function(data){
-        if (mang_root.indexOf(data) >= 0){
+        if (mang_root.indexOf(data.toUpperCase()) >= 0){
             //Cookie.set('name',data);
-            mang_now.push(data);
-            socket.name = data;
-            socket.emit('server-send-success-own',data);
+            mang_now.push(data.toUpperCase());
+            socket.name = data.toUpperCase();
+            socket.emit('server-send-success-own',data.toUpperCase());
             io.sockets.emit('server-send-user',mang_now);
         }
         else{
@@ -39,6 +39,7 @@ io.on('connection',function(socket){
         tmp = socket.name + ": " + data;
         message.push(tmp);
         io.sockets.emit('server-send-message',message);
+        socket.broadcast.emit('server-send-typing',typing);
     });
 
     socket.on('client-send-logout',function(){
@@ -46,13 +47,26 @@ io.on('connection',function(socket){
         socket.emit('server-send-logout');
         io.sockets.emit('server-send-user',mang_now);
     });
+
+    socket.on('client-send-loading',function(){
+        tmp = socket.name + ': <img src="comment-loading.gif" style="width:30px;height:30px;position:relative;top:7px;"> ';
+        socket.typing = tmp;
+        typing.push(tmp);
+        socket.broadcast.emit('server-send-typing',typing);
+    });
+
+    socket.on('client-send-end-loading',function(){
+        typing.splice(typing.indexOf(socket.typing));
+        io.sockets.emit('server-send-message',message);
+        socket.broadcast.emit('server-send-typing',typing);
+    })
 });
 
 
 
 
 
-app.get('/',function(req,res){
+app.get('/',function(   req,res){
     res.render('index');
     
 });
