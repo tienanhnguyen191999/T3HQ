@@ -59,8 +59,11 @@ socket.on('server-send-message',function(data){
 });
 
 socket.on('server-send-typing',function(data){
-    data.forEach(value => {
-        $('#content').append("<div class='txt'>"+ value +"</div>");
+    //alert(data.typing);
+    data.typing.forEach(value => {
+        if (data.name == value){
+            $('#content').append("<div class='txt'>"+ value +"</div>");
+        }
     });
 })
 $(document).ready(function(){
