@@ -8,7 +8,7 @@ app.set('view engine','ejs');
 app.set('views','./views');
 
 var io = require('socket.io')(server);
-var mang_root = ['TIEN','TRIEU','TOAN','HIEN','QUAN']; // Account
+var mang_root = ['TIEN','TRIEU','TOAN','HIEN','QUAN','THUC']; // Account
 var message = [];  
 var mang_now = []; // user now
 var typing = [];
