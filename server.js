@@ -39,7 +39,7 @@ io.on('connection',function(socket){
         tmp = socket.name + ": " + data;
         message.push(tmp);
         io.sockets.emit('server-send-message',message);
-        socket.broadcast.emit('server-send-typing',typing);
+        socket.broadcast.emit('server-send-typing',{typing: typing, name: socket.typing});
     });
 
     socket.on('client-send-logout',function(){
@@ -52,13 +52,13 @@ io.on('connection',function(socket){
         tmp = socket.name + ': <img src="comment-loading.gif" style="width:30px;height:30px;position:relative;top:7px;"> ';
         socket.typing = tmp;
         typing.push(tmp);
-        socket.broadcast.emit('server-send-typing',typing);
+        socket.broadcast.emit('server-send-typing',{typing: typing, name: socket.typing});
     });
 
     socket.on('client-send-end-loading',function(){
         typing.splice(typing.indexOf(socket.typing));
         io.sockets.emit('server-send-message',message);
-        socket.broadcast.emit('server-send-typing',typing);
+        io.sockets.emit('server-send-typing',{typing: typing, name: socket.typing});
     })
 });
 
